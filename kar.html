@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basha Dance Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: white;
+      overflow-x: hidden;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: black;
+      padding: 15px 50px;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    .navbar a:hover {
+      color: #E63946;
+    }
+    .hero {
+      text-align: center;
+      position: relative;
+      height: 60vh;
+      background: url('basha.jpg') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .section {
+      padding: 50px;
+      text-align: center;
+      display: none;
+    }
+    #about {
+      display: block;
+    }
+    .register-btn {
+      background: #E63946;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease-in-out;
+    }
+    .register-btn:hover {
+      background: #b52b35;
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .service-card {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+    .service-card:hover {
+      transform: scale(1.05);
+    }
+    .footer {
+      background: black;
+      padding: 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .footer img {
+      width: 40px;
+      height: 40px;
+      margin: 0 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .footer img:hover {
+      transform: scale(1.2);
+    }
+
+    .register-form {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+      text-align: center;
+      width: 350px;
+      max-width: 90%;
+      z-index: 1000;
+    }
+
+    .register-form h2 {
+      color: #E63946;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .register-form input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #555;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+      font-size: 16px;
+    }
+
+    .register-form button {
+      width: 100%;
+      padding: 12px;
+      background: #E63946;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .register-form button:hover {
+      background: #b52b35;
+    }
+
+    .cancel-btn {
+      background: gray;
+      margin-top: 10px;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .cancel-btn:hover {
+      background: darkgray;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div>
+      <a onclick="showSection('about')">About</a>
+      <a onclick="showSection('services')">Lessons</a>
+      <a onclick="showSection('events')">Events</a>
+      <a onclick="showSection('contact')">Contact</a>
+    </div>
+    <button class="register-btn">Register Now</button>
+  </div>
+
+  <div class="hero" id="home"></div>
+
+  <div class="section" id="about">
+    <h2>About Us</h2>
+    <p>We bring the passion of dance to life with professional training.</p>
+  </div>
+
+  <div class="section" id="services">
+    <h2>Lessons</h2>
+    <div class="services">
+      <div class="service-card">
+        <h3>Western</h3>
+        <p>Duration: 3 months</p>
+        <p>Fee: 1500</p>
+      </div>
+      <div class="service-card">
+        <h3>Hip-Hop</h3>
+        <p>Duration: 7 months</p>
+        <p>Fee: 6500</p>
+      </div>
+      <div class="service-card">
+        <h3>Salsa</h3>
+        <p>Duration: 5 months</p>
+        <p>Fee: 2500</p>
+      </div>
+      <div class="service-card">
+        <h3>Folk</h3>
+        <p>Duration: 2 months</p>
+        <p>Fee: 1000</p>
+    </div>
+    <div class="service-card">
+        <h3>Bhangra</h3>
+        <p>Duration: 8 months</p>
+        <p>Fee: 4000</p>
+    </div>
+    <div class="service-card">
+        <h3>Urban</h3>
+        <p>Duration: 11 months</p>
+        <p>Fee: 8000</p>
+    </div>
+    <div class="service-card">
+        <h3>Free Style</h3>
+        <p>Duration: 15 months</p>
+        <p>Fee: 6500</p>
+    </div>
+</div>
+</div>
+   
+
+  <div class="section" id="events">
+    <h2>Events</h2>
+    <p>Join us for exciting dance performances, workshops, and competitions!</p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@bashadanceacademy.com</p>
+    <p>Phone: +91 9701741198</p>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Registration Form -->
+  <div class="register-form" id="register-form">
+    <h2>Register for Dance Classes</h2>
+    <form id="registrationForm">
+      <input type="text" id="studentName" placeholder="Your Name" required />
+      <input type="tel" id="phoneNumber" placeholder="Phone Number" required />
+      <input type="text" id="danceStyle" placeholder="Dance Style" required />
+      <button type="submit">Submit</button>
+      <button type="button" class="cancel-btn" onclick="closeForm()">Cancel</button>
+    </form>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let registerForm = document.getElementById('register-form');
+      let registerBtn = document.querySelector('.register-btn');
+      let overlay = document.getElementById('overlay');
+  
+      registerBtn.addEventListener('click', function () {
+        registerForm.style.display = 'block';
+        overlay.style.display = 'block';
+      });
+  
+      overlay.addEventListener('click', closeForm);
+  
+      function closeForm() {
+        registerForm.style.display = 'none';
+        overlay.style.display = 'none';
+      }
+  
+      document.getElementById("registrationForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        let name = document.getElementById("studentName").value;
+        let phone = document.getElementById("phoneNumber").value;
+        let style = document.getElementById("danceStyle").value;
+  
+        closeForm();
+        alert(`🎉 Thank you for registering, ${name}!\n📞 Phone: ${phone}\n💃 Style: ${style}\nWe'll contact you soon!`);
+      });
+  
+      window.closeForm = closeForm;
+    });
+  
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+      });
+      document.getElementById(sectionId).style.display = 'block';
+    }
+  </script>
+  <div class="footer">
+    <p>Follow us on</p>
+    <a href="https://www.instagram.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" />
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
+    </a>
+    <p style="margin-top: 10px;">&copy; 2025 Basha Dance Academy</p>
+  </div>
+</body>
+</html>
